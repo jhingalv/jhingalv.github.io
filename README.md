@@ -25,6 +25,8 @@ This is a DNS-level redirection — **no HTML, PHP, or .htaccess redirection** i
    * **Target:** `jhingalv.github.io`
    * **Proxy status:** **DNS only** (gray cloud — GitHub handles HTTPS)
 
+  ![CNAME RECORD ON CLOUDFLARE](/images/step1cloudflare1.png)
+
 ### Steps in GitHub
   
 1. In your GitHub repository:
@@ -34,7 +36,10 @@ This is a DNS-level redirection — **no HTML, PHP, or .htaccess redirection** i
      ```
      github.amadorh.com
      ```
-   * Save and wait for GitHub to automatically create or update the `CNAME` file in the repository.
+   * Save and wait for GitHub to automatically create or update the `CNAME` file in the repository, this can be also done manually.
+   * Additionally, we can activate **enforce HTTPS**.
+
+  ![CUSTOM DOMAIN ON GITHUB](/images/step1github1.png)
 
 **Expected Result:**
 Visiting `https://github.amadorh.com` points to your GitHub Pages site showing “Welcome to my GitHub”.
@@ -54,6 +59,9 @@ Create a DNS record that directly points the subdomain `aboutme.amadorh.com` to 
    * **Name:** `aboutme`
    * **Target:** `jhingalv.github.io`
    * **Proxy status:** **DNS only** (gray cloud — GitHub handles HTTPS)
+
+  ![CNAME RECORD ON CLOUDFLARE](/images/step2cloudflare1.png)
+
 2. In your GitHub repository:
 
    * Go to **Settings > Pages**.
@@ -62,6 +70,9 @@ Create a DNS record that directly points the subdomain `aboutme.amadorh.com` to 
      aboutme.amadorh.com
      ```
    * Save and wait for GitHub to automatically create or update the `CNAME` file in the repository.
+  
+  ![CUSTOM DOMAIN ON GITHUB](/images/step2github1.png)
+
 3. In your GitHub profile:
 
    * On your profile, navigate to **Settings > Pages > Verified domains**
@@ -72,6 +83,8 @@ Create a DNS record that directly points the subdomain `aboutme.amadorh.com` to 
      * **Content:** 8a888m888ad88orh888as88i88r888 (note that this is not the real code)
 4. Go back to Cloudflare, navigate to **DNS > Records** and create a new **TXT record** with the information provided from github.
 5. In GitHub, click on verify. 
+   
+  ![VERIFIED DOMAIN ON GITHUB](/images/step2github2.png)
 
 **Expected Result:**
 Visiting `https://aboutme.amadorh.com` loads your **GitHub profile README** site directly under your custom subdomain.
