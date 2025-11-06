@@ -1,7 +1,6 @@
-# DNS Configuration and GitHub Pages Integration
+# Adding a DNS record to a sub-domain zone
 
 This technical document describes how to configure DNS records in **Cloudflare** to point subdomains to **GitHub Pages**, and explains the differences between two connection methods.
-
 
 ## 1. Redirect `github.amadorh.com` to GitHub Pages
 
@@ -13,8 +12,6 @@ Create a DNS record in Cloudflare so that the subdomain `github.amadorh.com` poi
 ### DNS Record Type
 
 **CNAME** (Canonical Name Record)
-
-### DNS Record Type
 
 This is a DNS-level redirection — **no HTML, PHP, or .htaccess redirection** is used.
 
@@ -45,7 +42,7 @@ Visiting `https://github.amadorh.com` points to your GitHub Pages site showing �
 ## 2. Point `aboutme.amadorh.com` directly to your GitHub profile README
 
 **Goal:**
-Create a DNS record that directly points the subdomain `aboutme.amadorh.com` to our profile README repo (the one that is named just like our username) and verify it in GitHub’s domain settings.
+Create a DNS record that directly points the subdomain `aboutme.amadorh.com` to our profile README repository (the one that is named just like our username) and verify it in GitHub’s domain settings.
 
 ### DNS Record Type
 
@@ -78,3 +75,29 @@ Create a DNS record that directly points the subdomain `aboutme.amadorh.com` to 
 
 **Expected Result:**
 Visiting `https://aboutme.amadorh.com` loads your **GitHub profile README** site directly under your custom subdomain.
+
+## 3. Differences Between the Two DNS Configurations
+
+Both configurations use a **CNAME** record to redirect subdomains to **GitHub Pages**, but there are key differences in how DNS records are managed and the purpose of each redirection.
+
+### **CNAME and DNS Records:**
+- **For `github.amadorh.com`:**  
+  Only a **CNAME** pointing to `jhingalv.github.io` is required. GitHub handles everything else, such as HTTPS management and subdomain resolution. No additional records are necessary for domain verification.
+
+- **For `aboutme.amadorh.com`:**  
+  Similar to the previous case, a **CNAME** is created pointing to `jhingalv.github.io`, but GitHub also requires a **TXT** record to verify the subdomain ownership. This step is necessary to associate the subdomain with the GitHub profile, and the **TXT** record must be added in **Cloudflare**.
+
+### **TXT Records and Domain Verification:**
+- **For `github.amadorh.com`:**  
+  No **TXT** record is required, as it only redirects to a repository and GitHub does not need to verify domain ownership.
+
+- **For `aboutme.amadorh.com`:**  
+  GitHub requires a **TXT** record to verify domain control. This is necessary to associate the subdomain with the user's profile and display the content of the `README.md` file from their GitHub account.
+
+### **Purpose and Security Requirements:**
+- **For `github.amadorh.com`:**  
+  The **CNAME** is sufficient for redirection, with no need for additional domain verification, making it easier to configure.
+  
+- **For `aboutme.amadorh.com`:**  
+  The **TXT** verification adds an extra layer of security. GitHub needs to ensure that you control the subdomain before allowing it to be linked to your profile.
+  
