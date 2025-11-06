@@ -82,6 +82,9 @@ Create a DNS record that directly points the subdomain `aboutme.amadorh.com` to 
      * **Name:** _github-pages-challenge-jhingalv.amadorh.com
      * **Content:** 8a888m888ad88orh888as88i88r888 (note that this is not the real code)
 4. Go back to Cloudflare, navigate to **DNS > Records** and create a new **TXT record** with the information provided from github.
+
+  ![TXT RECORD ON CLOUDFLARE](/images/step2cloudflare2.png)
+
 5. In GitHub, click on verify. 
    
   ![VERIFIED DOMAIN ON GITHUB](/images/step2github2.png)
